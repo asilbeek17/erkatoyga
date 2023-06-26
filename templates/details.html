@@ -50,7 +50,7 @@
                                 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<a href="{% url 'favourites' product.pk %}" class="btn btn-outline-danger">🤍 saqlash</a>
                                 {% endif %}
                         {% else %}
-                        <a href="{% url 'login' %}" class="btn btn-outline-danger">Add to favourites</a>
+                        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<a href="{% url 'login' %}" class="btn btn-outline-danger">🤍 saqlash</a>
                         {% endif %}
                     </div>
 
@@ -80,10 +80,22 @@
                          
                         </div>
                      </div>
+                {% if product.category_id == 1 %}
                     <h4 class="oglyoz">{{ product.title }}, soni {{ product.count }} ta</h4>
                     <h4 class="oglyoz">{{ product.description }}</h4>
                     <h4 class="oglyoz">{{ product.price }}</h4>
                     <h4 class="oglyoz">{{ product.category }}</h4>
+                {% elif product.category_id == 2 %}
+                    <h4 class="qizyoz" style="color: hotpink">{{ product.title }}, soni {{ product.count }} ta</h4>
+                    <h4 class="qizyoz" style="color: hotpink">{{ product.description }}</h4>
+                    <h4 class="qizyoz" style="color: hotpink">{{ product.price }}</h4>
+                    <h4 class="qizyoz" style="color: hotpink">{{ product.category }}</h4>
+                {% elif product.category_id == 3 %}
+                    <h4 class="qizyoz" style="color: #aaaae2">{{ product.title }}, soni {{ product.count }} ta</h4>
+                    <h4 class="qizyoz" style="color: #aaaae2">{{ product.description }}</h4>
+                    <h4 class="qizyoz" style="color: #aaaae2">{{ product.price }}</h4>
+                    <h4 class="qizyoz" style="color: #aaaae2">{{ product.category }}</h4>
+                {% endif %}
                 </div>
             </div>
         </div>
@@ -95,7 +107,7 @@
             <div class="text-center ">
               <div class="media_button mt-1">
                 <button class="OgilBola" data-id="boy">Ogil<br> bola</button>
-                <button class="QizBola " data-id="gril">Qiz <br> bola</button>
+                <button class="QizBola " data-id="gril" style="background-color: hotpink">Qiz <br> bola</button>
                 <button class="Umumiy " data-id="all">Umu <br> miy</button>
               </div>
             </div>
@@ -104,11 +116,11 @@
             <div class="row row-cols-2 row-cols-md-4 g-4">
               {% block content %}
                   {% for product in products %}
+                                      {% if product.category_id == 1 %}
                 <a href="{% url 'details' product.pk %}" class=" all boy block_item">
-                  <div class="col">
-                      <div class="">
-{#                    <div class="like2">#}
-                      <button class="like"><i class="fa-regular fa-heart" style="color: white; width: 50px;"></i></button>
+                  <div class="col  ">
+                    <div class="">
+                        <div class="favorite favorite_left"></div>
                     </div>
                     <div id="" class="box ">
                       <img src={{ product.image1.url }} class="card-img-top" alt="...">
@@ -116,11 +128,49 @@
                         <h4 class="nem">
                           <p>&ensp;{{ product.title|slice:14 }}...</p>
                           <p class="bi bi-balloon-heart" style="color: cadetblue">&ensp;{{ product.description|slice:13 }}...</p>
-                          <p class="narx">&ensp;{{ product.price}}</p>
+                          <p class="narx">&ensp;{{ product.price }} </p>
                         </h4>
                       </div>
                     </div>
                   </div>
+                </a>
+                          {% elif product.category_id == 2 %}
+                          <a href="{% url 'details' product.pk %}" class=" all gril block_item">
+                  <div class="col  ">
+                    <div class="">
+                        <div class="favorite favorite_left"></div>
+                    </div>
+                    <div id="" class="boxx ">
+                      <img src={{ product.image1.url }} class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h4>
+                          <p style="color: hotpink">&ensp;{{ product.title|slice:14 }}...</p>
+                          <p class="bi bi-balloon-heart" style="color: hotpink">&ensp;{{ product.description|slice:13 }}...</p>
+                          <p class="narx" style="color: hotpink">&ensp;{{ product.price }} </p>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                          {% elif product.category_id == 3 %}
+                          <a href="{% url 'details' product.pk %}" class=" all block_item">
+                  <div class="col  ">
+                    <div class="">
+                        <div class="favorite favorite_left"></div>
+                    </div>
+                    <div id="" class="boxxx ">
+                      <img src={{ product.image1.url }} class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h4 class="nemmm">
+                          <p>&ensp;{{ product.title|slice:14 }}...</p>
+                          <p class="bi bi-balloon-heart" style="color: #aaaae2;">&ensp;{{ product.description|slice:13 }}...</p>
+                          <p class="narx">&ensp;{{ product.price }} </p>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                      {% endif %}
                     {% endfor %}
               {% endblock content %}
             </div>

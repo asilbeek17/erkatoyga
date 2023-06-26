@@ -42,11 +42,11 @@
               <div class="row row-cols-2 row-cols-md-4 g-4">
                 {% block content %}
                   {% for product in new %}
+                                      {% if product.category_id == 1 %}
                 <a href="{% url 'details' product.pk %}" class=" all boy block_item">
                   <div class="col  ">
-{#                    <div class="like2">#}
-                      <div class="">
-                      <button class="like"><i class="fa-regular fa-heart" style="color: white; width: 50px;"></i></button>
+                    <div class="">
+                        <div class="favorite favorite_left"></div>
                     </div>
                     <div id="" class="box ">
                       <img src={{ product.image1.url }} class="card-img-top" alt="...">
@@ -54,11 +54,49 @@
                         <h4 class="nem">
                           <p>&ensp;{{ product.title|slice:14 }}...</p>
                           <p class="bi bi-balloon-heart" style="color: cadetblue">&ensp;{{ product.description|slice:13 }}...</p>
-                          <p class="narx">&ensp;{{ product.price }}</p>
+                          <p class="narx">&ensp;{{ product.price }} </p>
                         </h4>
                       </div>
                     </div>
                   </div>
+                </a>
+                          {% elif product.category_id == 2 %}
+                          <a href="{% url 'details' product.pk %}" class=" all gril block_item">
+                  <div class="col  ">
+                    <div class="">
+                        <div class="favorite favorite_left"></div>
+                    </div>
+                    <div id="" class="boxx ">
+                      <img src={{ product.image1.url }} class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h4>
+                          <p style="color: hotpink">&ensp;{{ product.title|slice:14 }}...</p>
+                          <p class="bi bi-balloon-heart" style="color: hotpink">&ensp;{{ product.description|slice:13 }}...</p>
+                          <p class="narx" style="color: hotpink">&ensp;{{ product.price }} </p>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                          {% elif product.category_id == 3 %}
+                          <a href="{% url 'details' product.pk %}" class=" all block_item">
+                  <div class="col  ">
+                    <div class="">
+                        <div class="favorite favorite_left"></div>
+                    </div>
+                    <div id="" class="boxxx ">
+                      <img src={{ product.image1.url }} class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h4 class="nemmm">
+                          <p>&ensp;{{ product.title|slice:14 }}...</p>
+                          <p class="bi bi-balloon-heart" style="color: #aaaae2;">&ensp;{{ product.description|slice:13 }}...</p>
+                          <p class="narx">&ensp;{{ product.price }} </p>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                      {% endif %}
                 </a>
                     {% endfor %}
               {% endblock content %}

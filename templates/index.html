@@ -20,7 +20,7 @@
     <div class="header">
       <div class="header2">
         <ul>
-          <li> <img class="Logo" src="{% static 'images/logo.png' %}" alt=""></li>
+          <a href="{% url 'index' %}"><li> <img class="Logo" src="{% static 'images/logo.png' %}" alt=""></li></a>
         </ul>
         <ul>
           {% if user.is_authenticated %}
@@ -37,12 +37,16 @@
     </div>
           {% if user.is_authenticated %}
           <ul>
-              <a href="{% url 'logout' %}">Logout</a>
+              <h5>
+                  &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<a href="{% url 'logout' %}" style="color: cornflowerblue">Logout</a>
+              </h5>
           </ul>
           {% else %}
           <ul>
-              <a href="{% url 'register' %}">Register</a>
-              <a href="{% url 'login' %}">Login</a>
+          <h5 style="color: cornflowerblue">
+              &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<a href="{% url 'register' %}" style="color: cornflowerblue">Register</a> |
+              <a href="{% url 'login' %}" style="color: cornflowerblue">Login</a>
+          </h5>
           </ul>
           {% endif %}
 
@@ -101,26 +105,24 @@
                  <div class="input-group" style="text-indent: 78px">
                     <input type="text" class="form-control" placeholder="Mahsulotni qidiring" name="title"
                         value="{{ request.GET.title }}">
-                    <button>&ensp;SEARCH&ensp;</button>
-                </div>
-              <div class="text-center nimala ">
-
+                    <button style="background-color: cornflowerblue">&ensp;SEARCH&ensp;</button>
+                </div></form>
+              <div class="text-center nimala">
                 <div class="media_button mt-1">
                   <button class="OgilBola" data-id="boy">Ogil <br> bola</button>
-                  <button class="QizBola" data-id="gril">Qiz <br> bola</button>
+                  <button class="QizBola" data-id="gril" style="background-color: hotpink">Qiz <br> bola</button>
                   <button class="Umumiy" data-id="all">Umu <br> miy</button>
                 </div>
               </div>
-          </form>
+
             <div class="container pt-5">
               <div class="row row-cols-2 row-cols-md-4 g-4">
               {% block content %}
                   {% for product in object_list %}
+                      {% if product.category_id == 1 %}
                 <a href="{% url 'details' product.pk %}" class=" all boy block_item">
                   <div class="col  ">
                     <div class="">
-{#                      <div class="">#}
-{#                      <button class="like"><i class="fa-regular fa-heart" style="color: white; width: 50px;"></i></button>#}
                         <div class="favorite favorite_left"></div>
                     </div>
                     <div id="" class="box ">
@@ -130,11 +132,48 @@
                           <p>&ensp;{{ product.title|slice:14 }}...</p>
                           <p class="bi bi-balloon-heart" style="color: cadetblue">&ensp;{{ product.description|slice:13 }}...</p>
                           <p class="narx">&ensp;{{ product.price }} </p>
-
                         </h4>
                       </div>
                     </div>
                   </div>
+                </a>
+                          {% elif product.category_id == 2 %}
+                          <a href="{% url 'details' product.pk %}" class=" all gril block_item">
+                  <div class="col  ">
+                    <div class="">
+                        <div class="favorite favorite_left"></div>
+                    </div>
+                    <div id="" class="boxx ">
+                      <img src={{ product.image1.url }} class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h4>
+                          <p style="color: hotpink">&ensp;{{ product.title|slice:14 }}...</p>
+                          <p class="bi bi-balloon-heart" style="color: hotpink">&ensp;{{ product.description|slice:13 }}...</p>
+                          <p class="narx" style="color: hotpink">&ensp;{{ product.price }} </p>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                          {% elif product.category_id == 3 %}
+                          <a href="{% url 'details' product.pk %}" class=" all block_item">
+                  <div class="col  ">
+                    <div class="">
+                        <div class="favorite favorite_left"></div>
+                    </div>
+                    <div id="" class="boxxx ">
+                      <img src={{ product.image1.url }} class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h4 class="nemmm">
+                          <p>&ensp;{{ product.title|slice:14 }}...</p>
+                          <p class="bi bi-balloon-heart" style="color: #aaaae2;">&ensp;{{ product.description|slice:13 }}...</p>
+                          <p class="narx">&ensp;{{ product.price }} </p>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                      {% endif %}
                     {% endfor %}
               {% endblock content %}
               </div>
